@@ -22,6 +22,7 @@ export function useReveal<T extends HTMLElement = HTMLDivElement>(
 
     observer.observe(el);
     return () => observer.disconnect();
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- run once on mount; options is not expected to change across renders
   }, []);
 
   return { ref, visible };

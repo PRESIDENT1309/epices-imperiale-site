@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { X, ArrowLeft, MessageCircle } from 'lucide-react';
 import type { Product } from '@/data/products';
 import { brand } from '@/config/brand';
