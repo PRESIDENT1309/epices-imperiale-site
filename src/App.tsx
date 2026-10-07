@@ -7,6 +7,8 @@ import ScrollProgress from '@/components/ScrollProgress';
 import Home from '@/pages/Home';
 import Professionals from '@/pages/Professionals';
 import Contact from '@/pages/Contact';
+import Recipes from '@/pages/Recipes';
+import RecipeDetail from '@/pages/RecipeDetail';
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation();
@@ -37,6 +39,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/professionnels" element={<Professionals />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/recettes" element={<Recipes />} />
+          <Route path="/recettes/:slug" element={<RecipeDetail />} />
         </Routes>
       </main>
       <Footer />
