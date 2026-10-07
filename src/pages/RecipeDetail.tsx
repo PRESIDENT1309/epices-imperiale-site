@@ -1,288 +1,234 @@
-import {
-  ArrowLeft,
-  ArrowUpRight,
-  Clock,
-  ChefHat,
-  Users,
-} from 'lucide-react';
+import { ArrowLeft, ArrowUpRight, Clock, Users } from 'lucide-react';
 import { Link, useParams } from 'react-router-dom';
-import Reveal from '../components/Reveal';
-import { recipes } from '../data/recipes';
+import Reveal from '@/components/Reveal';
+import { recipes } from '@/data/recipes';
 
 export default function RecipeDetail() {
   const { slug } = useParams<{ slug: string }>();
-
-  const recipe = recipes.find(
-    (item) => item.slug === slug && item.published
-  );
+  const recipe = recipes.find((item) => item.slug === slug);
 
   if (!recipe) {
     return (
-      <main className="min-h-screen bg-ink-800 px-6 py-32 text-ivory">
-        <div className="container-wide">
-          <Reveal>
-            <p className="mb-5 text-xs uppercase tracking-[0.25em] text-spice">
-              Recette introuvable
-            </p>
+      <main className="min-h-screen bg-ink-900 text-ivory">
+        <div className="container-wide section-pad flex min-h-screen flex-col items-center justify-center text-center">
+          <span className="text-eyebrow mb-4">Recette introuvable</span>
 
-            <h1 className="max-w-3xl font-display text-5xl leading-tight md:text-7xl">
-              Cette recette n'existe pas ou n'est plus disponible.
-            </h1>
+          <h1 className="font-display text-display-2 font-light">
+            Cette recette n’existe pas.
+          </h1>
 
-            <Link
-              to="/recettes"
-              className="group mt-10 inline-flex items-center gap-3 border border-white/20 px-6 py-4 text-xs uppercase tracking-[0.2em] transition-colors duration-300 hover:border-spice hover:text-spice"
-            >
-              <ArrowLeft size={16} strokeWidth={1.5} />
-              Retour aux recettes
-            </Link>
-          </Reveal>
+          <Link
+            to="/recettes"
+            className="mt-8 inline-flex items-center gap-2 text-xs uppercase tracking-[0.18em] text-ivory/70 transition-colors hover:text-spice"
+          >
+            <ArrowLeft size={15} strokeWidth={1.5} />
+            Retour aux recettes
+          </Link>
         </div>
       </main>
     );
   }
 
   return (
-    <main className="bg-ink-800 text-ivory">
-      {/* Hero */}
-      <section className="relative overflow-hidden">
-        <div className="relative min-h-[70vh]">
-          <img
-            src={recipe.image}
-            alt={recipe.title}
-            className="absolute inset-0 h-full w-full object-cover"
-          />
+    <main className="bg-ink-900 text-ivory">
+      {/* HERO */}
+      <section className="relative min-h-[75vh] overflow-hidden">
+        <img
+          src={recipe.image}
+          alt={recipe.title}
+          className="absolute inset-0 h-full w-full object-cover"
+        />
 
-          <div className="absolute inset-0 bg-ink-900/50" />
-          <div className="absolute inset-0 bg-gradient-to-t from-ink-800 via-ink-800/30 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink-900 via-ink-900/55 to-ink-900/10" />
 
-          <div className="container-wide relative z-10 flex min-h-[70vh] flex-col justify-end pb-14 pt-32 md:pb-20">
+        <div className="container-wide relative flex min-h-[75vh] items-end pb-16 pt-32 md:pb-24">
+          <div className="max-w-4xl">
             <Reveal>
               <Link
                 to="/recettes"
-                className="mb-10 inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-ivory/60 transition-colors hover:text-spice"
+                className="mb-8 inline-flex items-center gap-2 text-xs uppercase tracking-[0.18em] text-ivory/60 transition-colors hover:text-spice"
               >
                 <ArrowLeft size={15} strokeWidth={1.5} />
                 Toutes les recettes
               </Link>
             </Reveal>
 
-            <Reveal delay={0.1}>
-              <p className="mb-5 text-xs uppercase tracking-[0.3em] text-spice">
+            <Reveal delay={100}>
+              <span className="mb-5 block text-eyebrow text-spice">
                 {recipe.category}
-              </p>
+              </span>
             </Reveal>
 
-            <Reveal delay={0.15}>
-              <h1 className="max-w-5xl font-display text-5xl leading-[0.95] text-ivory md:text-7xl lg:text-8xl">
+            <Reveal delay={150}>
+              <h1 className="max-w-4xl font-display text-display-1 font-light leading-[0.95] text-ivory">
                 {recipe.title}
               </h1>
             </Reveal>
 
-            <Reveal delay={0.2}>
-              <p className="mt-7 max-w-2xl text-base leading-7 text-ivory/70 md:text-lg">
+            <Reveal delay={200}>
+              <p className="mt-6 max-w-2xl text-base leading-7 text-ivory/65 md:text-lg">
                 {recipe.description}
               </p>
+            </Reveal>
+
+            <Reveal delay={250}>
+              <div className="mt-8 flex flex-wrap gap-6 border-t border-white/15 pt-6">
+                <div className="flex items-center gap-2 text-xs uppercase tracking-[0.15em] text-ivory/60">
+                  <Clock size={15} strokeWidth={1.5} />
+                  <span>
+                    Préparation {recipe.prepTime} · Cuisson {recipe.cookTime}
+                  </span>
+                </div>
+
+                <div className="flex items-center gap-2 text-xs uppercase tracking-[0.15em] text-ivory/60">
+                  <Users size={15} strokeWidth={1.5} />
+                  <span>{recipe.servings} personnes</span>
+                </div>
+
+                <span className="text-xs uppercase tracking-[0.15em] text-ivory/60">
+                  {recipe.difficulty}
+                </span>
+              </div>
             </Reveal>
           </div>
         </div>
       </section>
 
-      {/* Recipe information */}
-      <section className="border-b border-white/10 bg-ink-900">
+      {/* CONTENU */}
+      <section className="section-pad">
         <div className="container-wide">
-          <div className="grid grid-cols-2 md:grid-cols-4">
-            <div className="border-r border-white/10 px-5 py-7 md:px-8">
-              <Clock
-                size={20}
-                strokeWidth={1.2}
-                className="mb-4 text-spice"
-              />
-              <p className="text-[10px] uppercase tracking-[0.2em] text-ivory/40">
-                Préparation
-              </p>
-              <p className="mt-2 font-display text-xl text-ivory">
-                {recipe.prepTime}
-              </p>
-            </div>
-
-            <div className="border-b border-white/10 px-5 py-7 md:border-b-0 md:border-r md:px-8">
-              <ChefHat
-                size={20}
-                strokeWidth={1.2}
-                className="mb-4 text-spice"
-              />
-              <p className="text-[10px] uppercase tracking-[0.2em] text-ivory/40">
-                Cuisson
-              </p>
-              <p className="mt-2 font-display text-xl text-ivory">
-                {recipe.cookTime}
-              </p>
-            </div>
-
-            <div className="border-r border-white/10 px-5 py-7 md:px-8">
-              <Users
-                size={20}
-                strokeWidth={1.2}
-                className="mb-4 text-spice"
-              />
-              <p className="text-[10px] uppercase tracking-[0.2em] text-ivory/40">
-                Portions
-              </p>
-              <p className="mt-2 font-display text-xl text-ivory">
-                {recipe.servings} personnes
-              </p>
-            </div>
-
-            <div className="px-5 py-7 md:px-8">
-              <ChefHat
-                size={20}
-                strokeWidth={1.2}
-                className="mb-4 text-spice"
-              />
-              <p className="text-[10px] uppercase tracking-[0.2em] text-ivory/40">
-                Difficulté
-              </p>
-              <p className="mt-2 font-display text-xl text-ivory">
-                {recipe.difficulty}
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Main recipe content */}
-      <section className="bg-ivory py-20 text-ink-900 md:py-28">
-        <div className="container-wide">
-          <div className="grid gap-16 lg:grid-cols-[0.8fr_1.5fr] lg:gap-24">
-            {/* Ingredients */}
+          <div className="grid grid-cols-1 gap-16 lg:grid-cols-[0.8fr_1.2fr] lg:gap-24">
+            {/* INGRÉDIENTS */}
             <Reveal>
-              <aside className="lg:sticky lg:top-28 lg:self-start">
-                <p className="text-xs uppercase tracking-[0.25em] text-spice">
-                  Les ingrédients
-                </p>
+              <div>
+                <span className="text-eyebrow mb-4 block">Préparation</span>
 
-                <h2 className="mt-4 font-display text-4xl leading-tight md:text-5xl">
-                  Ce qu'il vous faut.
+                <h2 className="font-display text-display-3 font-light">
+                  Les ingrédients
                 </h2>
 
-                <div className="mt-8 border-t border-ink-900/10">
-                  {recipe.ingredients.map((ingredient) => (
+                <div className="mt-8 border-t border-white/10">
+                  {recipe.ingredients.map((ingredient, index) => (
                     <div
-                      key={ingredient.name}
-                      className="flex items-start justify-between gap-6 border-b border-ink-900/10 py-4"
+                      key={`${ingredient.name}-${index}`}
+                      className="flex items-center justify-between gap-6 border-b border-white/10 py-4"
                     >
-                      <span className="text-sm leading-6 text-ink-900/75">
+                      <span className="text-sm text-ivory/80">
                         {ingredient.name}
                       </span>
 
-                      <span className="shrink-0 text-sm text-ink-900/45">
+                      <span className="text-xs uppercase tracking-[0.12em] text-ivory/40">
                         {ingredient.quantity}
                       </span>
                     </div>
                   ))}
                 </div>
 
-                {/* Spices */}
                 <div className="mt-10">
-                  <p className="text-xs uppercase tracking-[0.2em] text-ink-900/40">
-                    Épices Impériale
-                  </p>
+                  <span className="mb-4 block text-[10px] uppercase tracking-[0.2em] text-ivory/40">
+                    Épices Impériale utilisées
+                  </span>
 
-                  <div className="mt-4 flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-2">
                     {recipe.spices.map((spice) => (
                       <span
                         key={spice}
-                        className="border border-spice/30 bg-spice/5 px-3 py-2 text-[10px] uppercase tracking-[0.12em] text-ink-900/70"
+                        className="border border-spice/30 px-3 py-2 text-xs text-spice"
                       >
                         {spice}
                       </span>
                     ))}
                   </div>
                 </div>
-              </aside>
+              </div>
             </Reveal>
 
-            {/* Steps */}
-            <div>
-              <Reveal>
-                <p className="text-xs uppercase tracking-[0.25em] text-spice">
-                  La préparation
-                </p>
+            {/* ÉTAPES */}
+            <Reveal delay={100}>
+              <div>
+                <span className="text-eyebrow mb-4 block">Le geste</span>
 
-                <h2 className="mt-4 font-display text-4xl leading-tight md:text-5xl">
-                  Étape par étape.
+                <h2 className="font-display text-display-3 font-light">
+                  Comment la préparer
                 </h2>
-              </Reveal>
 
-              <div className="mt-10">
-                {recipe.steps.map((step, index) => (
-                  <Reveal key={`${recipe.id}-step-${index}`} delay={index * 0.05}>
-                    <div className="flex gap-6 border-t border-ink-900/10 py-7 md:gap-10">
-                      <span className="font-display text-3xl text-spice/70">
+                <div className="mt-10 space-y-8">
+                  {recipe.steps.map((step, index) => (
+                    <div
+                      key={`${recipe.id}-step-${index}`}
+                      className="grid grid-cols-[48px_1fr] gap-5"
+                    >
+                      <span className="font-display text-2xl font-light text-spice">
                         {String(index + 1).padStart(2, '0')}
                       </span>
 
-                      <p className="max-w-2xl pt-1 text-base leading-7 text-ink-900/70 md:text-lg">
+                      <p className="border-b border-white/10 pb-8 text-sm leading-7 text-ivory/65 md:text-base">
                         {step}
                       </p>
                     </div>
-                  </Reveal>
-                ))}
+                  ))}
+                </div>
               </div>
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>
 
-      {/* Story */}
+      {/* HISTOIRE DU PARTENAIRE */}
       {recipe.story && (
-        <section className="bg-ink-900 py-20 md:py-28">
+        <section className="section-pad bg-ink-800">
           <div className="container-wide">
-            <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-center lg:gap-24">
+            <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-20">
               <Reveal>
-                {recipe.story.image ? (
-                  <div className="aspect-[4/5] overflow-hidden">
+                <div className="relative aspect-[4/5] overflow-hidden">
+                  {recipe.story.image ? (
                     <img
                       src={recipe.story.image}
                       alt={recipe.story.author}
                       className="h-full w-full object-cover"
                     />
-                  </div>
-                ) : (
-                  <div className="flex aspect-[4/5] items-center justify-center bg-ink-800">
-                    <span className="font-display text-6xl text-spice/30">
-                      EI
-                    </span>
-                  </div>
-                )}
+                  ) : (
+                    <div className="flex h-full w-full items-center justify-center bg-ink-900">
+                      <span className="text-eyebrow text-ivory/30">
+                        Portrait à venir
+                      </span>
+                    </div>
+                  )}
+
+                  <div className="absolute inset-0 bg-gradient-to-t from-ink-900/60 to-transparent" />
+                </div>
               </Reveal>
 
-              <Reveal delay={0.1}>
+              <Reveal delay={100}>
                 <div>
-                  <p className="text-xs uppercase tracking-[0.25em] text-spice">
-                    L'histoire derrière la recette
-                  </p>
+                  <span className="text-eyebrow mb-5 block text-spice">
+                    Une histoire derrière l’assiette
+                  </span>
 
-                  <h2 className="mt-5 font-display text-4xl leading-tight text-ivory md:text-6xl">
+                  <h2 className="font-display text-display-2 font-light leading-tight">
                     {recipe.story.title}
                   </h2>
 
-                  <p className="mt-8 max-w-2xl text-base leading-8 text-ivory/65 md:text-lg">
-                    {recipe.story.content}
-                  </p>
+                  <div className="mt-8 max-w-xl">
+                    <p className="text-base leading-8 text-ivory/65 md:text-lg">
+                      {recipe.story.content}
+                    </p>
+                  </div>
 
                   <div className="mt-10 border-t border-white/10 pt-6">
-                    <p className="font-display text-2xl text-ivory">
+                    <p className="font-display text-xl text-ivory">
                       {recipe.story.author}
                     </p>
 
-                    <p className="mt-1 text-xs uppercase tracking-[0.18em] text-ivory/40">
+                    <p className="mt-1 text-xs uppercase tracking-[0.16em] text-ivory/40">
                       {recipe.story.role}
-                      {recipe.story.location
-                        ? ` · ${recipe.story.location}`
-                        : ''}
                     </p>
+
+                    {recipe.story.location && (
+                      <p className="mt-2 text-xs text-ivory/40">
+                        {recipe.story.location}
+                      </p>
+                    )}
                   </div>
                 </div>
               </Reveal>
@@ -291,64 +237,48 @@ export default function RecipeDetail() {
         </section>
       )}
 
-      {/* Product connection */}
-      <section className="bg-spice py-20 text-ink-900 md:py-24">
+      {/* CTA */}
+      <section className="section-pad">
         <div className="container-wide">
-          <div className="grid gap-8 md:grid-cols-[1fr_auto] md:items-center">
-            <Reveal>
-              <div>
-                <p className="text-xs uppercase tracking-[0.25em] text-ink-900/60">
-                  Le goût Épices Impériale
-                </p>
+          <Reveal>
+            <div className="border border-white/10 bg-ink-800 p-8 md:p-12 lg:p-16">
+              <div className="max-w-3xl">
+                <span className="text-eyebrow mb-5 block">
+                  Épices Impériale
+                </span>
 
-                <h2 className="mt-4 max-w-3xl font-display text-4xl leading-tight md:text-5xl">
-                  Les épices qui donnent du caractère à cette recette.
+                <h2 className="font-display text-display-2 font-light leading-tight">
+                  Le goût commence par de bons ingrédients.
                 </h2>
 
-                <div className="mt-6 flex flex-wrap gap-2">
-                  {recipe.spices.map((spice) => (
-                    <span
-                      key={spice}
-                      className="border border-ink-900/20 px-3 py-2 text-[10px] uppercase tracking-[0.12em] text-ink-900/70"
-                    >
-                      {spice}
-                    </span>
-                  ))}
+                <p className="mt-5 max-w-2xl text-sm leading-7 text-ivory/55 md:text-base">
+                  Retrouvez les épices utilisées dans cette recette et
+                  découvrez toute la collection Épices Impériale.
+                </p>
+
+                <div className="mt-8 flex flex-wrap gap-4">
+                  <Link
+                    to="/#collection"
+                    className="group inline-flex items-center gap-3 bg-spice px-6 py-4 text-xs uppercase tracking-[0.16em] text-ink-900 transition-colors hover:bg-ivory"
+                  >
+                    Découvrir nos épices
+                    <ArrowUpRight
+                      size={16}
+                      strokeWidth={1.5}
+                      className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                    />
+                  </Link>
+
+                  <Link
+                    to="/recettes"
+                    className="inline-flex items-center gap-2 border border-white/15 px-6 py-4 text-xs uppercase tracking-[0.16em] text-ivory/70 transition-colors hover:border-white/30 hover:text-ivory"
+                  >
+                    Voir toutes les recettes
+                  </Link>
                 </div>
               </div>
-            </Reveal>
-
-            <Reveal delay={0.1}>
-              <Link
-                to="/#collection"
-                className="group inline-flex w-fit items-center gap-3 border border-ink-900/30 px-6 py-4 text-xs uppercase tracking-[0.2em] transition-all duration-300 hover:bg-ink-900 hover:text-ivory"
-              >
-                Découvrir nos épices
-                <ArrowUpRight
-                  size={16}
-                  strokeWidth={1.5}
-                  className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
-                />
-              </Link>
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
-      {/* Back to recipes */}
-      <section className="bg-ink-800 py-16">
-        <div className="container-wide">
-          <Link
-            to="/recettes"
-            className="group inline-flex items-center gap-3 text-xs uppercase tracking-[0.2em] text-ivory/50 transition-colors hover:text-spice"
-          >
-            <ArrowLeft
-              size={16}
-              strokeWidth={1.5}
-              className="transition-transform duration-300 group-hover:-translate-x-1"
-            />
-            Retour à toutes les recettes
-          </Link>
+            </div>
+          </Reveal>
         </div>
       </section>
     </main>
