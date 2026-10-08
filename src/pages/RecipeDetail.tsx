@@ -1,6 +1,8 @@
 import { ArrowLeft, ArrowUpRight, Clock, Users } from 'lucide-react';
 import { Link, useParams } from 'react-router-dom';
+
 import Reveal from '@/components/Reveal';
+import RecipeProducts from '@/components/RecipeProducts';
 import { recipes } from '@/data/recipes';
 
 export default function RecipeDetail() {
@@ -174,6 +176,9 @@ export default function RecipeDetail() {
         </div>
       </section>
 
+      {/* PRODUITS ÉPICES IMPÉRIALE */}
+      <RecipeProducts recipe={recipe} />
+
       {/* HISTOIRE DU PARTENAIRE */}
       {recipe.story && (
         <section className="section-pad bg-ink-800">
@@ -262,6 +267,7 @@ export default function RecipeDetail() {
                     className="group inline-flex items-center gap-3 bg-spice px-6 py-4 text-xs uppercase tracking-[0.16em] text-ink-900 transition-colors hover:bg-ivory"
                   >
                     Découvrir nos épices
+
                     <ArrowUpRight
                       size={16}
                       strokeWidth={1.5}
