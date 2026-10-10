@@ -38,7 +38,7 @@ export const recipes: Recipe[] = [
     slug: 'saka-madesu',
     title: 'Saka-madesu à la congolaise',
     image:
-      'https://images.pexels.com/photos/5779781/pexels-photo-5779781.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Tshaka_Madesu_(Beans_%EF%BC%86_cassava_leaves_stew).jpg?width=1200',
     category: 'Cuisine congolaise',
     description:
       'Un plat généreux qui associe les feuilles de manioc pilées aux haricots mijotés. Une recette familiale, nourrissante et profondément ancrée dans la cuisine congolaise.',
@@ -82,7 +82,7 @@ export const recipes: Recipe[] = [
     slug: 'poulet-a-la-moambe',
     title: 'Poulet à la moambe',
     image:
-      'https://images.pexels.com/photos/36979923/pexels-photo-36979923.jpeg?auto=compress&cs=tinysrgb&w=1200',
+      'https://commons.wikimedia.org/wiki/Special:FilePath/Poulet_%C3%A0_la_moambe.JPG?width=1200',
     category: 'Cuisine congolaise',
     description:
       'Un poulet mijoté dans une sauce riche à base de pâte de noix de palme, relevé d’aromates. Un grand classique des repas de fête et des tables familiales.',
@@ -126,7 +126,7 @@ export const recipes: Recipe[] = [
     slug: 'liboke-de-poisson',
     title: 'Liboke de poisson',
     image:
-      'https://images.pexels.com/photos/12940588/pexels-photo-12940588.jpeg?auto=compress&cs=tinysrgb&w=1200',
+      'https://commons.wikimedia.org/wiki/Special:FilePath/Liboke_entrouvert_03.JPG?width=1200',
     category: 'Cuisine congolaise',
     description:
       'Du poisson assaisonné, enveloppé dans des feuilles adaptées à la cuisson, puis cuit à la vapeur ou sur une source de chaleur douce pour préserver ses arômes.',
@@ -171,7 +171,7 @@ export const recipes: Recipe[] = [
     slug: 'pondu-a-la-congolaise',
     title: 'Pondu à la congolaise',
     image:
-      'https://images.pexels.com/photos/4252141/pexels-photo-4252141.jpeg?auto=compress&cs=tinysrgb&w=1200',
+      'https://commons.wikimedia.org/wiki/Special:FilePath/Saka-saka_-_pounded_and_cooked_cassava_leaves.jpg?width=1200',
     category: 'Cuisine congolaise',
     description:
       'Des feuilles de manioc longuement cuites et assaisonnées, préparées dans l’esprit de la cuisine familiale congolaise.',
@@ -214,7 +214,7 @@ export const recipes: Recipe[] = [
     slug: 'fumbwa-a-la-congolaise',
     title: 'Fumbwa à la congolaise',
     image:
-      'https://images.pexels.com/photos/342230/pexels-photo-342230.jpeg?auto=compress&cs=tinysrgb&w=1200',
+      'https://commons.wikimedia.org/wiki/Special:FilePath/Mfumbwa_-_sauce_with_fufu.jpg?width=1200',
     category: 'Cuisine congolaise',
     description:
       'Une préparation de feuilles de fumbwa mijotées avec les ingrédients qui leur donnent leur caractère. Une recette à adapter aux habitudes culinaires de chaque famille.',
@@ -258,7 +258,7 @@ export const recipes: Recipe[] = [
     slug: 'poisson-braise-a-la-congolaise',
     title: 'Poisson braisé à la congolaise',
     image:
-      'https://images.pexels.com/photos/12940588/pexels-photo-12940588.jpeg?auto=compress&cs=tinysrgb&w=1200',
+      'https://commons.wikimedia.org/wiki/Special:FilePath/Poisson_brais%C3%A9_%C3%A0_Kinkole.jpg?width=1200',
     category: 'Cuisine congolaise',
     description:
       'Un poisson mariné aux aromates puis braisé jusqu’à obtenir une peau dorée et une chair tendre. À servir avec des bananes plantain, du chikwangue ou une salade.',
